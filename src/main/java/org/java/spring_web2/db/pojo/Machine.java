@@ -1,5 +1,7 @@
 package org.java.spring_web2.db.pojo;
 
+import org.java.spring_web2.web.dto.MachineDto;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,6 +31,11 @@ public class Machine {
         setName(name);
         setDescription(description);
         setPrice(price);
+    }
+
+    public Machine(MachineDto machineDto) {
+
+        this(machineDto.getName(), machineDto.getDescription(), machineDto.getPrice());
     }
 
     public int getId() {
@@ -61,6 +68,14 @@ public class Machine {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public void update(MachineDto machineDto) {
+
+        setName(machineDto.getName());
+        if (machineDto.getDescription() != null)
+            setDescription(machineDto.getDescription());
+        setPrice(machineDto.getPrice());
     }
 
     @Override
